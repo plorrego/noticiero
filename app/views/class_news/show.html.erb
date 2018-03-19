@@ -1,19 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+
+<h1>
   <%= @class_news.title %>
-</p>
+</h1>
 
-<p>
-  <strong>Drop:</strong>
+<date>
+  <%= @class_news.created_at %>
+</date>
+
+<h3>
   <%= @class_news.drop %>
-</p>
+</h3>
 
 <p>
-  <strong>Body:</strong>
   <%= @class_news.body %>
 </p>
+---------------------------------------------------------------------
+<h2>Comentarios:</h2>
+<% @class_news.coments.each do |coment| %>
+	<p>
+		<b><%= "#{coment.name}:" %></b>
+		<%= coment.content %>
+	</p>
+<% end %>
 
-<%= link_to 'Edit', edit_class_news_path(@class_news) %> |
+<div>
+	---------------------------------------------------------------------
+	<h3>Nuevo comentario</h3>
+
+
+	<%= form_for @coment, url: {action: "create", :controller=>"coments"} do |f| %>
+	
+	Nombre: 
+	<%= f.text_field :name %>
+	<p>
+		Comentario:
+	</p>
+  <%= f.text_area :content, :cols => 50, :rows => 4 %>
+  
+  <%= f.hidden_field :class_news_id, :value => @class_news.id %>
+ 
+ <%= f.submit "Comentar" %>
+ 
+<% end %>
+</div>
+
+
 <%= link_to 'Back', class_news_index_path %>

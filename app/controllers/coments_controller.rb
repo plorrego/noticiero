@@ -23,12 +23,26 @@ class ComentsController < ApplicationController
 
   # POST /coments
   # POST /coments.json
-  def create
+  def create1
     @coment = Coment.new(coment_params)
 
     respond_to do |format|
       if @coment.save
         format.html { redirect_to @coment, notice: 'Coment was successfully created.' }
+        format.json { render :show, status: :created, location: @coment }
+      else
+        format.html { render :new }
+        format.json { render json: @coment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create
+    @coment = Coment.new(coment_params)
+
+    respond_to do |format|
+      if @coment.save
+        format.html { redirect_to ClassNews.find(coment_params[:class_news_id])}
         format.json { render :show, status: :created, location: @coment }
       else
         format.html { render :new }
@@ -69,6 +83,6 @@ class ComentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coment_params
-      params.require(:coment).permit(:name, :content)
+      params.require(:coment).permit(:name, :content, :class_news_id)
     end
 end

@@ -4,12 +4,13 @@ class ClassNewsController < ApplicationController
   # GET /class_news
   # GET /class_news.json
   def index
-    @class_news = ClassNews.all
+    @class_news = ClassNews.order(created_at: :desc).first(10)
   end
 
   # GET /class_news/1
   # GET /class_news/1.json
   def show
+    @coment = Coment.new
   end
 
   # GET /class_news/new
