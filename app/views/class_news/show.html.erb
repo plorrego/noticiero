@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @class_news.title %>
+</p>
+
+<p>
+  <strong>Drop:</strong>
+  <%= @class_news.drop %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @class_news.body %>
+</p>
+
+<%= link_to 'Edit', edit_class_news_path(@class_news) %> |
+<%= link_to 'Back', class_news_index_path %>
