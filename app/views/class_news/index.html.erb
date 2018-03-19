@@ -1,6 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+
 <h1>Noticiero</h1>
+
+<% if user_signed_in? %>
+  <%= link_to 'Crear nueva noticia', new_class_news_path %>
+<% end %>
 
 <table>
   <thead>
@@ -23,8 +36,10 @@
         <td><%= class_news.coments.length %></td>
         <td><%= class_news.created_at.strftime("%F") %></td>
         <td><%= link_to 'Ver', class_news %></td>
+        <% if user_signed_in? %>
         <td><%= link_to 'Editar', edit_class_news_path(class_news) %></td>
         <td><%= link_to 'Eliminar', class_news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +47,3 @@
 
 <br>
 
-<%= link_to 'New Class News', new_class_news_path %>

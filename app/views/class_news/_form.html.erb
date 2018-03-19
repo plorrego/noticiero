@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title, id: :class_news_title %>
+    <%= form.label :Titulo %>
+    <%= form.text_area :title, id: :class_news_title, :cols => 50 %>
   </div>
 
   <div class="field">
-    <%= form.label :drop %>
-    <%= form.text_area :drop, id: :class_news_drop %>
+    <%= form.label :Bajada %>
+    <%= form.text_area :drop, id: :class_news_drop, :rows => 10, :cols => 50 %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :class_news_body %>
+    <%= form.label :Cuerpo %>
+    <%= form.text_area :body, id: :class_news_body, :rows => 40, :cols => 50 %>
   </div>
 
   <div class="actions">

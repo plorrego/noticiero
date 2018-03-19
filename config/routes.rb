@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :coments
   resources :class_news
 	root 'class_news#index'

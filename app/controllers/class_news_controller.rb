@@ -4,7 +4,11 @@ class ClassNewsController < ApplicationController
   # GET /class_news
   # GET /class_news.json
   def index
-    @class_news = ClassNews.order(created_at: :desc).first(10)
+    if user_signed_in?
+      @class_news = ClassNews.order(created_at: :desc)
+    else
+      @class_news = ClassNews.order(created_at: :desc).first(10)
+    end
   end
 
   # GET /class_news/1
